@@ -3,6 +3,7 @@ package com.revature.restaurant;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.spec.ECField;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -31,11 +32,23 @@ public class ReservationServlet extends HttpServlet {
 
 		mapper.registerModule(new JSR310Module());
 
-		line = reader.readLine();
-		Reservation res = mapper.readValue(line, Reservation.class);
+		String json = "";
+//		line = reader.readLine();
+		while((line = reader.readLine()) != null){
+			json += line;
+		}
+		Reservation res = null;
+		res = mapper.readValue(json, Reservation.class);
+//		try {
+//			res = mapper.readValue(json, Reservation.class);
+//		} catch (Exception e){
+//			resp.getWriter().write("put in better json, dude");
+//		}
 		System.out.println(res);
 
 		service.makeReservation(res);
+
+		resp.getWriter().write("we did it, I think there really doesnt seem to be any checking");
 
 	}
 
@@ -45,6 +58,7 @@ public class ReservationServlet extends HttpServlet {
 		String results = "";
 
 		results = service.getAllReservations().toString();
+
 
 		//PrintWriter writer = resp.getWriter();
 		
