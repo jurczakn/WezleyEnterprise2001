@@ -15,4 +15,10 @@ public class ReservationDao {
 		
 	}
 	
+	public List<Reservation> readAll() {
+		return dummyDB;
+	}
+	
+	
+	
 }

@@ -45,5 +45,10 @@ public class Reservation {
 	public Reservation() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "Reservation [firstName=" + firstName + ", lastName=" + lastName + ", date=" + date + "]";
+	}
 	
 }

@@ -2,6 +2,7 @@ package com.revature.restaurant.service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.revature.restaurant.dao.ReservationDao;
 import com.revature.restaurant.pojo.Reservation;
@@ -17,18 +18,26 @@ public class ReservationService {
 
 
 
-	public void makeReservation(String firstName, String lastName, String date) {
+	public void makeReservation(Reservation res) {
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy:hh-mm");
+		//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy:hh-mm");
 		
-		System.out.println(formatter);
+		//System.out.println(formatter);
 		
-		LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+		//LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
 		
-		Reservation reservation = new Reservation(firstName, lastName, localDateTime);
+		//Reservation reservation = new Reservation();//new Reservation(firstName, lastName, localDateTime);
 
-		dao.createReservation(reservation);
+		//reservation.setFirstName(firstName);
 		
+		//reservation.setLastName(lastName);
+		
+		dao.createReservation(res);
+		
+	}
+	
+	public List<Reservation> getAllReservations() {
+		return dao.readAll();
 	}
 
 }
